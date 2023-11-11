@@ -1,21 +1,12 @@
 <script setup lang="ts">
 import BaseCard from "./base/BaseCard.vue";
-import type { PropType } from "vue";
+import { ref, inject } from "vue";
 import type { CardInfo } from "../types/CardInfo";
-
-const props = defineProps({
-  cardInfoList: {
-    type: Array as PropType<CardInfo[]>,
-    required: true,
-  },
-});
+const cardInfoList = inject("cardInfoList", ref<CardInfo[]>([]));
 </script>
 
 <template>
-  <BaseCard
-    v-for="cardInfo in cardInfoList"
-    :key="cardInfo.id"
-    :style="{ width: cardInfo.cardSize }"
-    :cardInfo="cardInfo"
-  />
+  <div v-for="cardInfo in cardInfoList" :key="cardInfo.id">
+    <BaseCard :style="{ width: cardInfo.cardSize }" :cardInfo="cardInfo" />
+  </div>
 </template>

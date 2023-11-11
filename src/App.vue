@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PriceCardList from "@/components/PriceCardList.vue";
 import { ref } from "vue";
+import { provide } from "vue";
 
 const cardInfoList = ref([
   {
@@ -34,11 +35,13 @@ const cardInfoList = ref([
     headerColor: "has-text-info",
   },
 ]);
+
+provide("cardInfoList", cardInfoList);
 </script>
 
 <template>
   <div class="container">
-    <PriceCardList :cardInfoList="cardInfoList" />
+    <PriceCardList />
   </div>
 </template>
 
